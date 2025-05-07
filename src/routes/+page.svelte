@@ -43,7 +43,7 @@
 <!-- ===================== HERO SECTION ===================== -->
 <section id="hero" class="relative flex h-screen items-center bg-[#091300]">
 	<!-- ===================== Navigation Bar ===================== -->
-	<nav class="fixed top-0 left-0 z-40 w-full shadow-sm">
+	<nav class="absolute top-0 left-0 z-40 w-full">
 		<div class="container mx-auto flex items-center justify-between px-4 py-5">
 			<!-- Site Logo -->
 			<a href="/" class="text-xl font-bold text-indigo-600">
