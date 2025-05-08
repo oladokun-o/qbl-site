@@ -43,6 +43,6 @@ export default defineConfig({
 		})
 	],
 	server: {
-		allowedHosts: ['devserver-main--qbl.netlify.app', 'localhost'],
+		allowedHosts: ['devserver-main--qbl.netlify.app', 'localhost', 'https://devserver-main--qbl.netlify.app/'],
 	}
 });
