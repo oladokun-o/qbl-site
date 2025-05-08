@@ -1,14 +1,4 @@
-import { gsap } from 'gsap';
-
-// Initialize GSAP plugins
-let ScrollTrigger;
-if (typeof window !== 'undefined') {
-  // We're in the browser
-  import('gsap/ScrollTrigger').then(module => {
-    ScrollTrigger = module.default;
-    gsap.registerPlugin(ScrollTrigger);
-  });
-}
+import { gsap } from 'gsap/dist/gsap';
 
 /**
  * Scale down animation - scales element from large to original size
@@ -105,6 +95,12 @@ export function floatingAnimation(element: gsap.TweenTarget) {
  * @param {Object} options - Animation and trigger options
  */
 export function scrollAnimation(selector: gsap.DOMTarget, options = {}) {
+  // Check if browser is ready for scroll trigger
+  if (typeof window === 'undefined' || !document) {
+    console.warn('ScrollTrigger is not available in this environment.');
+    return;
+  }
+
   const defaults = {
     y: 50,
     opacity: 0,

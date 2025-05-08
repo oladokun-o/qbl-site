@@ -13,8 +13,12 @@
 	import DrinkServed from '$lib/assets/images/drink served.jpg';
 	// Importing GSAP and animation functions
 	import { gsap } from 'gsap';
+	import ScrollTrigger from 'gsap/ScrollTrigger'; 
 	import { initHeroAnimations, scaleDownAnimation } from '$lib/utils/animation';
 	import { onMount } from 'svelte';
+	
+	// Initialize GSAP plugins
+	gsap.registerPlugin(ScrollTrigger);
 
 	let heroImages: any;
 	let heroTextElement: HTMLDivElement | null = null;
