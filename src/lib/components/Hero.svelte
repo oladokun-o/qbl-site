@@ -13,10 +13,10 @@
 	import DrinkServed from '$lib/assets/images/drink served.jpg';
 	// Importing GSAP and animation functions
 	import { gsap } from 'gsap';
-	import ScrollTrigger from 'gsap/ScrollTrigger'; 
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { initHeroAnimations, scaleDownAnimation } from '$lib/utils/animation';
 	import { onMount } from 'svelte';
-	
+
 	// Initialize GSAP plugins
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -78,7 +78,7 @@
 <section
 	id="hero"
 	style="background-color: #091300;"
-	class="relative flex items-center overflow-x-hidden w-full"
+	class="relative flex w-full items-center overflow-x-hidden"
 >
 	<!-- ===================== Hero Background ===================== -->
 	<div class="absolute inset-0 -z-10 bg-black/40"></div>
