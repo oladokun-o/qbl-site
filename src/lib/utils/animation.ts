@@ -1,8 +1,14 @@
 import { gsap } from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 
 // Initialize GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+let ScrollTrigger;
+if (typeof window !== 'undefined') {
+  // We're in the browser
+  import('gsap/ScrollTrigger').then(module => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 /**
  * Scale down animation - scales element from large to original size
