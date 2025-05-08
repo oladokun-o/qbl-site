@@ -41,5 +41,8 @@ export default defineConfig({
 				orientation: 'portrait'
 			}
 		})
-	]
+	],
+	server: {
+		allowedHosts: ['devserver-main--qbl.netlify.app', 'localhost', 'https://devserver-main--qbl.netlify.app/'],
+	}
 });
