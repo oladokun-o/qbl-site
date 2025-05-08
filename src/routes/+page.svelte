@@ -22,6 +22,7 @@
 	import Product1 from '$lib/assets/images/Group 1.png';
 	import ContactText from '$lib/assets/images/Contact text.svg';
 	import ContactImage from '$lib/assets/images/contact img.png';
+	let menuOpen = false;
 
 	import { onMount } from 'svelte';
 	let showHeroText = true;
@@ -42,15 +43,37 @@
 
 <!-- Landing Section -->
 <!-- ===================== HERO SECTION ===================== -->
-<section id="hero" class="relative flex h-screen items-center bg-[#091300]">
+<section id="hero" class="relative flex h-screen items-center overflow-x-hidden bg-[#091300]">
 	<!-- ===================== Navigation Bar ===================== -->
-	<nav class="absolute top-0 left-0 z-40 w-full">
+	<nav class="absolute top-0 left-0 z-40 w-full bg-transparent">
 		<div class="container mx-auto flex items-center justify-between px-4 py-5">
-			<!-- Site Logo -->
+			<!-- Logo -->
 			<a href="/" class="text-xl font-bold text-indigo-600">
 				<img src={LogoSvg} alt="Logo" class="w-[48px]" />
 			</a>
-			<!-- Navigation Links -->
+
+			<!-- Hamburger Button (mobile only) -->
+			<button
+				class="cursor-pointer text-white focus:outline-none md:hidden"
+				on:click={() => (menuOpen = !menuOpen)}
+			>
+				<svg
+					class="h-6 w-6"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d={menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+					/>
+				</svg>
+			</button>
+
+			<!-- Nav Links (desktop) -->
 			<div class="hidden space-x-8 md:flex">
 				<a href="#hero" class="dm-sans text-[12px] font-bold text-white transition-colors"
 					>OUR CRAFT</a
@@ -62,6 +85,32 @@
 					>CONTACT</a
 				>
 			</div>
+		</div>
+
+		<!-- Mobile Nav (slide-down) -->
+		<div
+			class={`fixed top-0 left-0 z-50 h-full w-64 transform bg-[#091300] p-6 text-white transition-transform duration-300 ease-in-out ${
+				menuOpen ? 'translate-x-0' : '-translate-x-full'
+			} md:hidden`}
+		>
+			<div class="mb-9 flex justify-between">
+				<a href="/" class="text-xl font-bold text-indigo-600">
+					<img src={LogoSvg} alt="Logo" class="w-[38px]" />
+				</a>
+				<!-- Close Button -->
+				<button class="mb-6 cursor-pointer text-white" on:click={() => (menuOpen = false)}>
+					✕
+				</button>
+			</div>
+
+			<!-- Sidebar Links -->
+			<nav class="flex flex-col space-y-6">
+				<a href="#hero" class="text-sm font-bold" on:click={() => (menuOpen = false)}>OUR CRAFT</a>
+				<a href="#products" class="text-sm font-bold" on:click={() => (menuOpen = false)}
+					>OUR PRODUCTS</a
+				>
+				<a href="#contact" class="text-sm font-bold" on:click={() => (menuOpen = false)}>CONTACT</a>
+			</nav>
 		</div>
 	</nav>
 
@@ -83,77 +132,86 @@
 			<img
 				src={TheIgboCulture}
 				alt="The igbo culture"
-				class="scroll-move absolute top-[10%] left-[5%] -z-10 w-full max-w-40 transition-transform duration-700 ease-out"
+				class="scroll-move absolute top-35 lg:top-[10%] left-[5%] -z-10 w-full max-w-25 md:max-w-40 transition-transform duration-700 ease-out"
 			/>
 			<img
 				src={Bottle}
-				alt="The igbo culture"
-				class="scroll-move absolute top-[2%] right-[35%] -z-10 w-full max-w-40 transition-transform delay-200 duration-700 ease-out"
+				alt="Bottle"
+				class="scroll-move absolute top-[2%] lg:right-[35%] right-15 -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-200 duration-700 ease-out"
 			/>
 			<img
 				src={VintageYorubaCouple}
-				alt="The igbo culture"
-				class="scroll-move absolute top-[33%] right-[10%] -z-10 w-full max-w-40 transition-transform delay-300 duration-700 ease-out"
+				alt="Vintage Yoruba Couple"
+				class="scroll-move absolute top-95 right-5 lg:top-[33%] lg:right-[10%] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-300 duration-700 ease-out"
 			/>
 			/>
 			<img
 				src={PalmWineGourd}
-				alt="The igbo culture"
-				class="scroll-move absolute bottom-[10%] left-[20%] -z-10 w-full max-w-40 transition-transform delay-500 duration-700 ease-out"
+				alt="PalmWine Gourd"
+				class="scroll-move absolute left-5 bottom-[10%] lg:left-[20%] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-500 duration-700 ease-out"
 			/>
 			<img
 				src={Sarahlaird}
 				alt="Sarahlaird"
-				class="scroll-move absolute right-[25%] bottom-[0] -z-10 w-full max-w-40 transition-transform delay-600 duration-700 ease-out"
+				class="scroll-move absolute right-[25%] bottom-[0] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-600 duration-700 ease-out"
 			/>
 		</div>
 	</div>
 </section>
 
 <!-- ===================== SECOND IMAGE SECTION ===================== -->
-<section class="relative flex h-screen items-center bg-[#091300]">
+<section class="relative flex h-screen items-center overflow-x-hidden bg-[#091300]">
 	<div class="relative z-1 h-screen w-full overflow-hidden">
 		<!-- first five images -->
 		<img
 			src={GrapeEscape}
 			alt="The igbo culture"
-			class="scroll-move absolute top-[10%] left-[5%] -z-10 w-full max-w-40 transition-transform duration-700 ease-out"
+			class="scroll-move absolute top-60 lg:top-[10%] left-[5%] -z-10 w-full max-w-25 md:max-w-40 transition-transform duration-700 ease-out"
 		/>
 		<img
 			src={GhiaPear}
 			alt="The igbo culture"
-			class="scroll-move absolute top-[2%] right-[50%] -z-10 w-full max-w-40 transition-transform delay-200 duration-700 ease-out"
+			class="scroll-move absolute top-[2%] right-[50%] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-200 duration-700 ease-out"
 		/>
 		<img
 			src={Waragi}
 			alt="The igbo culture"
-			class="scroll-move absolute top-[33%] right-[25%] -z-10 w-full max-w-40 transition-transform delay-300 duration-700 ease-out"
+			class="scroll-move absolute right-5 top-[33%] lg:right-[25%] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-300 duration-700 ease-out"
 		/>
 		/>
 		<img
 			src={PourDrink}
 			alt="The igbo culture"
-			class="scroll-move absolute bottom-[10%] left-[20%] -z-10 w-full max-w-40 transition-transform delay-500 duration-700 ease-out"
+			class="scroll-move absolute bottom-[10%] left-[20%] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-500 duration-700 ease-out"
 		/>
 		<img
 			src={DrinkServed}
 			alt="Sarahlaird"
-			class="scroll-move absolute right-[5%] bottom-[0] -z-10 w-full max-w-40 transition-transform delay-600 duration-700 ease-out"
+			class="scroll-move absolute right-[5%] bottom-[0] -z-10 w-full max-w-25 md:max-w-40 transition-transform delay-600 duration-700 ease-out"
 		/>
 	</div>
 </section>
 
 <!-- ===================== ABOUT SECTION ===================== -->
-<section id="about" class="relative flex min-h-screen items-center bg-[#A52F00] text-black py-30">
-	<img src={Anise} alt="anise" class="absolute top-75 left-[21%] w-60" />
+<section
+	id="about"
+	class="px-o relative mx-0 flex min-h-screen overflow-x-hidden bg-[#A52F00] py-30 text-black z-99"
+>
+	<img
+		src={Anise}
+		alt="anise"
+		class="absolute left-5 w-50 md:top-70 md:top-75 md:left-[21%] md:w-60"
+	/>
 	<div
-		class="relative z-8 container mx-auto flex flex-col items-center justify-center space-y-6 px-20 pt-90"
+		class="relative z-8 container mx-auto flex flex-col items-center justify-center space-y-6 px-5 pt-51 md:px-20 md:pt-90"
 	>
 		<div>
-			<h1 class="text-black/70 font-bold text-[50px] leading-relaxed indent-58">
-				<span class="text-white">At Quench</span> Beverages, we bottle more than liquor — we bottle legacy. Inspired by time-honored
-				methods and reimagined for today’s drinker, our spirits are bold, intentional, and full of
-				character. Every pour is a celebration — of where we’ve been, and where we’re going.
+			<h1
+				class="indent-15 text-[25px] leading-tight font-bold text-black/70 md:indent-58 md:text-[30px] md:text-[50px] md:leading-relaxed"
+			>
+				<span class="text-white">At Quench</span> Beverages, we bottle more than liquor — we bottle legacy.
+				Inspired by time-honored methods and reimagined for today’s drinker, our spirits are bold, intentional,
+				and full of character. Every pour is a celebration — of where we’ve been, and where we’re going.
 			</h1>
 		</div>
 	</div>
@@ -162,48 +220,51 @@
 <!-- ===================== OUR CRAFT SECTION ===================== -->
 <section
 	id="craft"
-	class="relative flex min-h-screen flex-col items-center bg-[#233020] pt-50 text-black"
+	class="relative mx-0 flex min-h-screen flex-col items-center overflow-x-hidden bg-[#233020] px-0 pt-20 pb-20 text-black md:pt-50 md:pb-0 z-99"
 >
-	<div class="container flex justify-center gap-40">
+	<div class="flex w-full flex-col justify-center gap-30 lg:flex-row">
 		<!-- Our Craft Group 1 -->
-		<div class="flex flex-col gap-20">
-			<p class="uppercase text-white font-light">Our craft</p>>
+		<div class="flex flex-col gap-20 px-5">
+			<p class="font-light text-white uppercase">Our craft</p>
 			<img src={CraftTitle} alt="craft title" class="w-90" />
 		</div>
 		<!-- Our Craft Group 2 -->
-		<div class="flex flex-col gap-15">
-			<img src={Anise} alt="anise" class="w-70" />
-			<div class="flex w-70 flex-col gap-5 text-sm font-light text-white">
-				<p>We started with two foundational spirits:</p>
-				<p>
-					<span class="italic">Ògógóró</span><br />a timeless, bold distillate crafted with clarity
-					and character.
-				</p>
-				<p>
-					<span class="italic">Waragia</span> <br />refined botanical spirit, smooth with a
-					signature aromatic finish.
-				</p>
+		<div class="flex justify-between md:justify-center lg gap-10 md:gap-30">
+			<div class="flex flex-col gap-15">
+				<img src={Anise} alt="anise" class="w-70" />
+				<div class="flex w-70 flex-col gap-5 text-sm font-light text-white">
+					<p>We started with two foundational spirits:</p>
+					<p>
+						<span class="italic">Ògógóró</span><br />a timeless, bold distillate crafted with
+						clarity and character.
+					</p>
+					<p>
+						<span class="italic">Waragia</span> <br />refined botanical spirit, smooth with a
+						signature aromatic finish.
+					</p>
+				</div>
 			</div>
-		</div>
-		<!-- Our Craft Group 3 -->
-		<div class="flex flex-col gap-15 pt-20">
-			<img src={GrapeEscape} alt="grape escape" class="w-70" />
-			<div class="flex w-70 flex-col gap-5 text-sm font-light text-white">
-				<p>
-					From these, we created Fusions — a line of ready-to-drink cocktails blending tradition
-					with flavor-forward innovation:
-				</p>
-				<ol class="list-outside list-disc pl-9 italic">
-					<li>Ògógóró + Zobo Ògógóró + Chapman</li>
-					<li>Ògógóró+ Palm Wine</li>
-				</ol>
-				<p>Each bottle is crafted to refresh, connect, and redefine how spirits are experienced.</p>
+			<div class="flex flex-col gap-15 md:pt-20">
+				<img src={GrapeEscape} alt="grape escape" class="w-70" />
+				<div class="flex w-70 flex-col gap-5 text-sm font-light text-white">
+					<p>
+						From these, we created Fusions — a line of ready-to-drink cocktails blending tradition
+						with flavor-forward innovation:
+					</p>
+					<ol class="list-outside list-disc pl-9 italic">
+						<li>Ògógóró + Zobo Ògógóró + Chapman</li>
+						<li>Ògógóró+ Palm Wine</li>
+					</ol>
+					<p>
+						Each bottle is crafted to refresh, connect, and redefine how spirits are experienced.
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Decorative Ogogoro Image -->
-	<div>
+	<div class="mt-10 hidden md:block">
 		<img src={ogogoro} alt="ogogoro" class="" />
 	</div>
 </section>
@@ -211,102 +272,132 @@
 <!-- ===================== PRODUCTS SECTION ===================== -->
 <section
 	id="products"
-	class="relative flex min-h-screen flex-col bg-[#A52F00] px-8 py-30 text-white"
+	class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#A52F00] py-30 text-white z-99"
 >
-	<h1 class="items-left mb-15 text-left text-[60px] text-[#FFEEAF] px-35">OUR <br /> PRODUCTS</h1>
+	<h1 class="items-left px-5 text-left text-[60px] text-[#FFEEAF] lg:mb-15 lg:px-35 leading-[0.9] font-light">
+		OUR <br /> PRODUCTS
+	</h1>
 	<!-- Products Display -->
-	<div class="py-10 w-full overflow-x-auto">
-		<div class="flex flex-nowrap justify-center gap-x-10 gap-y-20 mx-auto max-w-7xl">
-		  
-		  <!-- ogogoro -->
-		  <div class="flex flex-col items-center gap-6 w-72">
-			<img src={Product1} alt="Product" class="w-full object-contain" />
-			<div class="flex flex-col gap-6 text-sm font-medium text-left">
-			  <p class="font-bold uppercase">Ogogoro</p>
-			  <ul class="flex flex-col gap-4">
-				<li class="font-light"><span class="italic font-bold">Classic</span><br />The original palm spirit.</li>
-				<li class="font-light"><span class="italic font-bold">Crema de Naija</span><br />A silky cream liqueur inspired by tropical indulgence.</li>
-				<li class="font-light"><span class="italic font-bold">Flavored</span><br />Pineapple & Coconut variants for a fresh island twist.</li>
-			  </ul>
+	<div class="overflow-x-hidden py-10">
+		<div class="mx-auto flex max-w-7xl xl:justify-center gap-x-10 gap-y-20">
+			<!-- ogogoro -->
+			<div class="flex flex-col items-center gap-6">
+				<div class="w-[250px]">
+					<img src={Product1} alt="Product" class="w-full" />
+				</div>
+				<div class="flex flex-col gap-6 text-left text-sm font-medium">
+					<p class="font-bold uppercase">Ogogoro</p>
+					<ul class="flex flex-col gap-4">
+						<li class="font-light">
+							<span class="font-bold italic">Classic</span><br />The original palm spirit.
+						</li>
+						<li class="font-light">
+							<span class="font-bold italic">Crema de Naija</span><br />A silky cream liqueur
+							inspired by tropical indulgence.
+						</li>
+						<li class="font-light">
+							<span class="font-bold italic">Flavored</span><br />Pineapple & Coconut variants for a
+							fresh island twist.
+						</li>
+					</ul>
+				</div>
 			</div>
-		  </div>
-	  
-		  <!-- waragi -->
-		  <div class="flex flex-col items-center gap-6 w-72">
-			<img src={Product2} alt="Product" class="w-full object-contain" />
-			<div class="flex flex-col gap-6 text-sm font-medium text-left">
-			  <p class="font-bold uppercase">Waragi</p>
-			  <ul class="flex flex-col gap-4">
-				<li class="font-light"><span class="italic font-bold">Original</span><br />Clean, clear, and botanical.</li>
-				<li class="font-light"><span class="italic font-bold">Flavored</span><br />Guava & Mango infusions for fruit-forward flair.</li>
-			  </ul>
+
+			<!-- waragi -->
+			<div class="flex w-72 flex-col items-center gap-6">
+				<div class="w-[250px]">
+					<img src={Product2} alt="Product" class="w-full" />
+				</div>
+				<div class="flex flex-col gap-6 text-left text-sm font-medium">
+					<p class="font-bold uppercase">Waragi</p>
+					<ul class="flex flex-col gap-4">
+						<li class="font-light">
+							<span class="font-bold italic">Original</span><br />Clean, clear, and botanical.
+						</li>
+						<li class="font-light">
+							<span class="font-bold italic">Flavored</span><br />Guava & Mango infusions for
+							fruit-forward flair.
+						</li>
+					</ul>
+				</div>
 			</div>
-		  </div>
-	  
-		  <!-- Zobolo Plus -->
-		  <div class="flex flex-col items-center gap-6 w-72">
-			<img src={Product3} alt="Product" class="w-full object-contain" />
-			<div class="flex flex-col gap-6 text-sm font-medium text-left">
-			  <p class="font-bold uppercase">Zobolo Plus</p>
-			  <ul class="flex flex-col gap-4">
-				<li class="font-light">Ogogoro meets Zobo in a hibiscus-spiced cocktail. Bold and floral.</li>
-			  </ul>
+
+			<!-- Zobolo Plus -->
+			<div class="flex w-72 flex-col items-center gap-6">
+				<div class="w-[250px]">
+					<img src={Product3} alt="Product" class="w-full" />
+				</div>
+				<div class="flex flex-col gap-6 text-left text-sm font-medium">
+					<p class="font-bold uppercase">Zobolo Plus</p>
+					<ul class="flex flex-col gap-4">
+						<li class="font-light">
+							Ogogoro meets Zobo in a hibiscus-spiced cocktail. Bold and floral.
+						</li>
+					</ul>
+				</div>
 			</div>
-		  </div>
-	  
-		  <!-- Calmar -->
-		  <div class="flex flex-col items-center gap-6 w-72">
-			<img src={Product4} alt="Product" class="w-full object-contain" />
-			<div class="flex flex-col gap-6 text-sm font-medium text-left">
-			  <p class="font-bold uppercase">Calmar</p>
-			  <ul class="flex flex-col gap-4">
-				<li class="font-light">A zesty Ogogoro + Chapman mix. Bittersweet, citrusy, iconic.</li>
-			  </ul>
+
+			<!-- Calmar -->
+			<div class="flex w-72 flex-col items-center gap-6">
+				<div class="w-[250px]">
+					<img src={Product4} alt="Product" class="w-full" />
+				</div>
+				<div class="flex flex-col gap-6 text-left text-sm font-medium">
+					<p class="font-bold uppercase">Calmar</p>
+					<ul class="flex flex-col gap-4">
+						<li class="font-light">A zesty Ogogoro + Chapman mix. Bittersweet, citrusy, iconic.</li>
+					</ul>
+				</div>
 			</div>
-		  </div>
-	  
-		  <!-- Zobolo -->
-		  <div class="flex flex-col items-center gap-6 w-72">
-			<img src={Product5} alt="Product" class="w-full object-contain" />
-			<div class="flex flex-col gap-6 text-sm font-medium text-left">
-			  <p class="font-bold uppercase">Zobolo</p>
-			  <ul class="flex flex-col gap-4">
-				<li class="font-light">Our take on the classic beloved Zobo.</li>
-			  </ul>
+
+			<!-- Zobolo -->
+			<div class="flex w-72 flex-col items-center gap-6">
+				<div class="w-[250px]">
+					<img src={Product5} alt="Product" class="w-full" />
+				</div>
+				<div class="flex flex-col gap-6 text-left text-sm font-medium">
+					<p class="font-bold uppercase">Zobolo</p>
+					<ul class="flex flex-col gap-4">
+						<li class="font-light">Our take on the classic beloved Zobo.</li>
+					</ul>
+				</div>
 			</div>
-		  </div>
-	  
 		</div>
-	  </div>
-	  
+	</div>
 </section>
 
 <!-- ===================== CONTACT US SECTION ===================== -->
 <section
 	id="contact"
-	class="relative flex min-h-screen flex-col bg-[#566353] px-8 py-30 text-white"
+	class="relative flex min-h-screen flex-col overflow-x-hidden bg-[#566353] px-8 py-30 text-white z-99"
 >
-	<div class="absolute top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
-		<img src={ContactText} alt="contact text" class="w-full max-w-[600px] md:max-w-[900px]" />
+	<div class="absolute top-1/5 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 lg:top-1/2">
+		<img
+			src={ContactText}
+			alt="contact text"
+			class="w-[500px] min-w-[300px] md:w-full md:max-w-[900px]"
+		/>
 	</div>
-	<div class="absolute bottom-1 left-1/2 z-50 -translate-x-1/2 -translate-y-9">
-		<img src={ContactImage} alt="ContactImage" class="w-full max-w-[100px] md:max-w-[250px]" />
+	<div class="absolute top-65 left-1/2 z-50 -translate-x-1/2 -translate-y-9 sm:top-60 lg:top-125">
+		<img src={ContactImage} alt="ContactImage" class="w-full min-w-[200px] md:max-w-[250px]" />
 	</div>
-	<div class="absolute bottom-9 left-[5%] w-50 text-sm">
-		<div class="flex flex-col gap-3 text-center">
-			<p>Order Now — Get your favorite Quench products delivered or find a stockist near you.</p>
-			<a href="#" class="underline">Order Now</a>
-		</div>
-	</div>
-	<div class="absolute right-[5%] bottom-9 w-50 text-sm">
-		<div class="flex flex-col gap-3 text-center">
-			<p>Follow us for updates, new drops, cocktail reciepes, and exclusive events.</p>
-			<div class="flex flex-col text-center underline">
-				<a href="#">Instagram</a>
-				<a href="#">Twitter</a>
-				<a href="#">Facebook</a>
+	<div class="mt-[390px] grid w-full justify-center gap-10 lg:mt-0 lg:block">
+		<div class="bottom-9 left-[5%] w-50 text-sm lg:absolute">
+			<div class="flex flex-col gap-3 text-center">
+				<p>Order Now — Get your favorite Quench products delivered or find a stockist near you.</p>
+				<a href="#" class="underline">Order Now</a>
 			</div>
-			<p>info@quenchbeverages.com</p>
+		</div>
+		<div class="right-[5%] bottom-9 w-50 text-sm lg:absolute">
+			<div class="flex flex-col gap-3 text-center">
+				<p>Follow us for updates, new drops, cocktail reciepes, and exclusive events.</p>
+				<div class="flex flex-col text-center underline">
+					<a href="#">Instagram</a>
+					<a href="#">Twitter</a>
+					<a href="#">Facebook</a>
+				</div>
+				<p>info@quenchbeverages.com</p>
+			</div>
 		</div>
 	</div>
 </section>

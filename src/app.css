@@ -10,6 +10,7 @@ html {
 /* Hide scrollbar */
 html::-webkit-scrollbar {
 	display: none;
+	
 }
 
 html {
