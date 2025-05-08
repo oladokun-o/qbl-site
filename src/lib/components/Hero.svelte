@@ -55,7 +55,7 @@
 				backgroundColor: '#A52F00',
 				scrollTrigger: {
 					trigger: '#hero',
-					start: 'top top',
+					start: 'bottom 200%',
 					end: 'bottom top',
 					scrub: true
 				}
