@@ -10,6 +10,7 @@ html {
 /* Hide scrollbar */
 html::-webkit-scrollbar {
 	display: none;
+	
 }
 
 html {
@@ -23,3 +24,7 @@ html {
 	font-weight: 400;
 	font-style: normal;
 }
+body {
+	font-family: 'DM Sans', sans-serif;
+  }
+  
