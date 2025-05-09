@@ -1,5 +1,3 @@
-import { gsap } from 'gsap/dist/gsap';
-
 /**
  * Scale down animation - scales element from large to original size
  * @param {HTMLElement} element - The DOM element to animate
