@@ -5,7 +5,7 @@
 	let menuOpen = false;
 </script>
 
-<nav class="absolute top-0 left-0 z-40 w-full bg-transparent">
+<nav class="fixed top-0 left-0 z-[999] w-full bg-transparent">
     <div class="container mx-auto flex items-center justify-between px-4 py-5">
         <!-- Logo -->
         <a href="/" class="text-xl font-bold text-indigo-600">
@@ -34,7 +34,7 @@
 
         <!-- Nav Links (desktop) -->
         <div class="hidden space-x-8 md:flex">
-            <a href="#hero" class="dm-sans text-[12px] font-bold text-white transition-colors"
+            <a href="#craft" class="dm-sans text-[12px] font-bold text-white transition-colors"
                 >OUR CRAFT</a
             >
             <a href="#products" class="dm-sans text-[12px] font-bold text-white transition-colors"
@@ -64,7 +64,7 @@
 
         <!-- Sidebar Links -->
         <nav class="flex flex-col space-y-6">
-            <a href="#hero" class="dm-sans text-sm font-bold" on:click={() => (menuOpen = false)}>OUR CRAFT</a>
+            <a href="#craft" class="dm-sans text-sm font-bold" on:click={() => (menuOpen = false)}>OUR CRAFT</a>
             <a href="#products" class="dm-sans text-sm font-bold" on:click={() => (menuOpen = false)}
                 >OUR PRODUCTS</a
             >

@@ -28,11 +28,11 @@
 
 		// Animate hero text
 		if (heroTextElement) {
-			scaleDownAnimation(heroTextElement, {
-				scale: 1.3,
-				duration: 1.8,
-				delay: 0.5
-			});
+			// scaleDownAnimation(heroTextElement, {
+			// 	scale: 1.3,
+			// 	duration: 1.8,
+			// 	delay: 0.5
+			// });
 
 			gsap.set(heroTextElement, { x: 0, opacity: 1 });
 

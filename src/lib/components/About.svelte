@@ -4,25 +4,48 @@
 
 <!-- ===================== ABOUT SECTION ===================== -->
 <section
-	id="about"
-	class="px-o relative z-99 mx-0 flex min-h-screen overflow-x-hidden bg-[#A52F00] py-30 text-black"
+	id="craft"
+	class="px-o z-99 py-30 sticky mx-0 flex h-screen flex-row overflow-y-hidden overflow-x-scroll bg-[#A52F00] text-black"
 >
-	<img
-		src={Anise}
-		alt="anise"
-		class="absolute top-70 left-5 w-50 md:top-75 md:left-[21%] md:w-60"
-	/>
-	<div
-		class="relative z-8 container mx-auto flex flex-col items-center justify-center space-y-6 px-5 pt-51 md:px-20 md:pt-90"
-	>
-		<div>
-			<h1
-				class="indent-15 text-[25px] leading-tight font-bold text-black/70 md:indent-58 md:text-[50px] md:leading-relaxed"
+	<div class="h-full w-full flex flex-row">
+		<div class="relative max-w-full min-w-full border border-white">
+			<img
+				src={Anise}
+				alt="anise"
+				class="absolute left-5 top-[0px] w-[194px] md:left-[21%] 2xl:w-[328px]"
+			/>
+			<div
+				class="z-8 relative left-[15px] top-[185px] w-[337px] md:w-full md:px-20 xl:top-[270px] xl:px-[200px]"
 			>
-				<span class="text-white">At Quench</span> Beverages, we bottle more than liquor — we bottle legacy.
-				Inspired by time-honored methods and reimagined for today's drinker, our spirits are bold, intentional,
-				and full of character. Every pour is a celebration — of where we've been, and where we're going.
-			</h1>
+				<h1
+					class="indent-23 md:indent-30 xl:indent-50 text-[30px] font-bold leading-tight text-black/70 md:leading-relaxed lg:indent-40 lg:text-[40px] 2xl:text-[45px]"
+				>
+					<span class="text-white">At Quench</span> Beverages, we bottle more than liquor — we bottle
+					legacy. Inspired by time-honored methods and reimagined for today's drinker, our spirits are
+					bold, intentional, and full of character. Every pour is a celebration — of where we've been,
+					and where we're going.
+				</h1>
+			</div>
+		</div>
+
+		<div class="relative max-w-full min-w-full border border-white">
+			<img
+				src={Anise}
+				alt="anise"
+				class="absolute left-5 top-[0px] w-[194px] md:left-[21%] 2xl:w-[328px]"
+			/>
+			<div
+				class="z-8 relative left-[15px] top-[185px] w-[337px] md:w-full md:px-20 xl:top-[270px] xl:px-[200px]"
+			>
+				<h1
+					class="indent-23 md:indent-30 xl:indent-70 text-[30px] font-bold leading-tight text-black/70 md:leading-relaxed lg:indent-40 lg:text-[40px] 2xl:text-[55px]"
+				>
+					<span class="text-white">At Quench</span> Beverages, we bottle more than liquor — we bottle
+					legacy. Inspired by time-honored methods and reimagined for today's drinker, our spirits are
+					bold, intentional, and full of character. Every pour is a celebration — of where we've been,
+					and where we're going.
+				</h1>
+			</div>
 		</div>
 	</div>
 </section>
