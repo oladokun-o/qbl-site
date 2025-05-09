@@ -24,7 +24,8 @@
     'slide-bottom': { y: -distance, opacity: 0 },
     'slide-left': { x: distance, opacity: 0 },
     'slide-right': { x: -distance, opacity: 0 },
-    'fade-in': { opacity: 0 }
+    'fade-in': { opacity: 0 },
+    'scale-in-top': { y: 0, scale: 0.8, opacity: 1 },
   };
 
   // Screen size breakpoints (in pixels)
@@ -125,6 +126,7 @@
     if (initialState.x !== undefined) resetState.x = 0;
     if (initialState.y !== undefined) resetState.y = 0;
     if (initialState.opacity !== undefined) resetState.opacity = 1;
+    if (initialState.scale !== undefined) resetState.scale = 1;
     return resetState;
   }
 </script>

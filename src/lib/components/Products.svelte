@@ -1,106 +1,93 @@
-<script>
-	import Product1 from '$lib/assets/images/Group 1.png';
-	import Product2 from '$lib/assets/images/Group 2.png';
-	import Product3 from '$lib/assets/images/Group 3.png';
-	import Product4 from '$lib/assets/images/Group 4.png';
-	import Product5 from '$lib/assets/images/Group 5.png';
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { qbl_products } from '$lib/utils/products';
+	import OurProducts from '$lib/assets/images/OUR PRODUCTS.svg';
+	
+	// Product data array
+	const products = qbl_products;
+	
+	let productsContainer: HTMLDivElement | null = null;
+	
+	onMount(() => {
+		// Set the container width based on the number of products
+		const containerWidth = products.length * 350; // Width in pixels
+		const viewportWidth = window.innerWidth;
+		
+		gsap.set(productsContainer, {
+			width: `${containerWidth}px`
+		});
+		
+		// Create scroll animation
+		const scrollAnimation = gsap.to(productsContainer, {
+			x: () => -(containerWidth - viewportWidth + 100), // Adding padding
+			ease: 'none',
+			scrollTrigger: {
+				trigger: '#products',
+				start: 'top top',
+				end: () => `+=${containerWidth - viewportWidth + 200}`, // Longer scroll area
+				pin: true,
+				scrub: 1,
+				invalidateOnRefresh: true,
+				anticipatePin: 1
+			}
+		});
+		
+		// Add parallax effect to products
+		const productElements = document.querySelectorAll('.product-item');
+		productElements.forEach((product, index) => {
+			gsap.to(product, {
+				y: (index % 2 === 0) ? -30 : 30, // Alternating up and down movement
+				scrollTrigger: {
+					trigger: '#products',
+					start: 'top top',
+					end: () => `+=${containerWidth - viewportWidth + 200}`,
+					scrub: true,
+					containerAnimation: scrollAnimation
+				}
+			});
+		});
+		
+		// Cleanup on component unmount
+		return () => {
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+		};
+	});
 </script>
 
 <!-- ===================== PRODUCTS SECTION ===================== -->
 <section
 	id="products"
-	class="relative z-99 flex min-h-screen w-full flex-col overflow-x-hidden bg-[#A52F00] py-30 text-white"
+	class="relative z-10 flex min-h-screen w-full flex-col overflow-hidden bg-[#A52F00] text-white gap-5 md:gap-10"
 >
-	<h1
-		class="items-left px-5 text-left text-[60px] leading-[0.9] font-light text-[#FFEEAF] lg:mb-15 lg:px-35"
-	>
-		OUR <br /> PRODUCTS
-	</h1>
-	<!-- Products Display -->
-	<div class="overflow-x-hidden py-10">
-		<div class="mx-auto flex max-w-7xl gap-x-10 gap-y-20 xl:justify-center">
-			<!-- ogogoro -->
-			<div class="flex flex-col items-center gap-6">
-				<div class="w-[250px]">
-					<img src={Product1} alt="Product" class="w-full" />
+	<div class="px-5 pt-20 lg:px-35">
+		<h1 class="text-left text-[60px] font-light leading-[0.9] text-[#FFEEAF]">
+			<img src={OurProducts} alt="Our Products" class="w-[250px] sm:w-[300px] md:w-[250px] 2xl:w-[331px]" />
+		</h1>
+	</div>
+	
+	<!-- Products Display - Horizontal Scrolling Container -->
+	<div class="products-scroll-container relative flex w-full items-center overflow-hidden">
+		<div bind:this={productsContainer} class="products-wrapper flex gap-5 md:gap-20 px-5 pl-10 lg:px-35 md:pr-[100px]">
+			{#each products as product, i}
+				<div class="product-item flex w-[280px] flex-col gap-3 md:gap-6">
+					<div class="product-image-container relative w-[274px] md:w-[200px] xl:w-[334px]">
+						<img src={product.image} alt={product.name} class="w-full transition-transform duration-500" />
+					</div>
+					<div class="flex flex-col gap-3 md:gap-6 text-left text-sm w-full sm:w-[208px]">
+						<p class="font-bold uppercase">{product.name}</p>
+						<ul class="flex flex-col gap-4">
+							{#each product.variants as variant}
+								<li class="font-light">
+									{#if variant.name}
+										<span class="font-bold italic">{variant.name}</span><br />
+									{/if}
+									{variant.description}
+								</li>
+							{/each}
+						</ul>
+					</div>
 				</div>
-				<div class="flex flex-col gap-6 text-left text-sm font-medium">
-					<p class="font-bold uppercase">Ogogoro</p>
-					<ul class="flex flex-col gap-4">
-						<li class="font-light">
-							<span class="font-bold italic">Classic</span><br />The original palm spirit.
-						</li>
-						<li class="font-light">
-							<span class="font-bold italic">Crema de Naija</span><br />A silky cream liqueur
-							inspired by tropical indulgence.
-						</li>
-						<li class="font-light">
-							<span class="font-bold italic">Flavored</span><br />Pineapple & Coconut variants for a
-							fresh island twist.
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- waragi -->
-			<div class="flex w-72 flex-col items-center gap-6">
-				<div class="w-[250px]">
-					<img src={Product2} alt="Product" class="w-full" />
-				</div>
-				<div class="flex flex-col gap-6 text-left text-sm font-medium">
-					<p class="font-bold uppercase">Waragi</p>
-					<ul class="flex flex-col gap-4">
-						<li class="font-light">
-							<span class="font-bold italic">Original</span><br />Clean, clear, and botanical.
-						</li>
-						<li class="font-light">
-							<span class="font-bold italic">Flavored</span><br />Guava & Mango infusions for
-							fruit-forward flair.
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- Zobolo Plus -->
-			<div class="flex w-72 flex-col items-center gap-6">
-				<div class="w-[250px]">
-					<img src={Product3} alt="Product" class="w-full" />
-				</div>
-				<div class="flex flex-col gap-6 text-left text-sm font-medium">
-					<p class="font-bold uppercase">Zobolo Plus</p>
-					<ul class="flex flex-col gap-4">
-						<li class="font-light">
-							Ogogoro meets Zobo in a hibiscus-spiced cocktail. Bold and floral.
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- Calmar -->
-			<div class="flex w-72 flex-col items-center gap-6">
-				<div class="w-[250px]">
-					<img src={Product4} alt="Product" class="w-full" />
-				</div>
-				<div class="flex flex-col gap-6 text-left text-sm font-medium">
-					<p class="font-bold uppercase">Calmar</p>
-					<ul class="flex flex-col gap-4">
-						<li class="font-light">A zesty Ogogoro + Chapman mix. Bittersweet, citrusy, iconic.</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- Zobolo -->
-			<div class="flex w-72 flex-col items-center gap-6">
-				<div class="w-[250px]">
-					<img src={Product5} alt="Product" class="w-full" />
-				</div>
-				<div class="flex flex-col gap-6 text-left text-sm font-medium">
-					<p class="font-bold uppercase">Zobolo</p>
-					<ul class="flex flex-col gap-4">
-						<li class="font-light">Our take on the classic beloved Zobo.</li>
-					</ul>
-				</div>
-			</div>
+			{/each}
 		</div>
 	</div>
 </section>

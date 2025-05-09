@@ -1,39 +1,69 @@
 <script>
 	import ContactText from '$lib/assets/images/Contact text.svg';
+	import ContactTextSm from '$lib/assets/images/Contact text-sm.svg';
 	import ContactImage from '$lib/assets/images/contact img.png';
+	import MaskedContactImage from '$lib/assets/images/contact img.svg';
+	import AnimateOnScroll from './AnimateOnScroll.svelte';
+	import ZoomInTop from './ZoomInTop.svelte';
+	import MaskedZoomInImage from './MaskedZoomInImage.svelte';
 </script>
 
 <!-- ===================== CONTACT US SECTION ===================== -->
 <section
 	id="contact"
-	class="relative z-99 flex min-h-screen flex-col overflow-x-hidden bg-[#566353] px-8 py-30 text-white"
+	class="z-99 md:py-30 relative flex min-h-screen flex-col overflow-x-hidden bg-[#566353] px-8 pb-5 pt-20 text-white"
 >
-	<div class="absolute top-1/5 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 lg:top-1/2">
+	<AnimateOnScroll
+		animation="slide-top"
+		duration={1.5}
+		once={false}
+		extendedClass="flex w-full flex-col items-center justify-center"
+	>
 		<img
 			src={ContactText}
 			alt="contact text"
-			class="w-[500px] min-w-[300px] md:w-full md:max-w-[900px]"
+			class="hidden w-[1000px] xl:block"
+			loading="lazy"
+			decoding="async"
 		/>
-	</div>
-	<div class="absolute top-65 left-1/2 z-50 -translate-x-1/2 -translate-y-9 sm:top-60 lg:top-125">
-		<img src={ContactImage} alt="ContactImage" class="w-full min-w-[200px] md:max-w-[250px]" />
-	</div>
-	<div class="mt-[390px] grid w-full justify-center gap-10 lg:mt-0 lg:block">
-		<div class="bottom-9 left-[5%] w-50 text-sm lg:absolute">
+		<img
+			src={ContactTextSm}
+			alt="contact text"
+			class="block w-[235px] xl:hidden"
+			loading="lazy"
+			decoding="async"
+		/>
+	</AnimateOnScroll>
+
+	<div class="flex w-full flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
+		<div class="zoom-wrapper relative top-[-8px] flex w-full items-center justify-center md:hidden">
+			<ZoomInTop once={false}>
+				<img src={ContactImage} alt="ContactImage" class="w-[250px]" />
+			</ZoomInTop>
+			<!-- <MaskedZoomInImage imageUrl={ContactImage} maskImageUrl={MaskedContactImage} /> -->
+		</div>
+		<div class="w-50">
 			<div class="flex flex-col gap-3 text-center">
-				<p>Order Now — Get your favorite Quench products delivered or find a stockist near you.</p>
-				<a href="#" class="underline">Order Now</a>
+				<p class="dm-sans text-[12px]">
+					Order Now — Get your favorite Quench products delivered or find a stockist near you.
+				</p>
+				<a href="#" class="dm-sans text-[12px] underline">Order Now</a>
 			</div>
 		</div>
-		<div class="right-[5%] bottom-9 w-50 text-sm lg:absolute">
+		<div class="relative top-[-28px] hidden w-full items-center justify-center md:flex">
+			<img src={ContactImage} alt="ContactImage" class="w-[214px" />
+		</div>
+		<div class="w-50">
 			<div class="flex flex-col gap-3 text-center">
-				<p>Follow us for updates, new drops, cocktail reciepes, and exclusive events.</p>
+				<p class="dm-sans text-[12px]">
+					Follow us for updates, new drops, cocktail reciepes, and exclusive events.
+				</p>
 				<div class="flex flex-col text-center underline">
-					<a href="#">Instagram</a>
-					<a href="#">Twitter</a>
-					<a href="#">Facebook</a>
+					<a href="#" class="dm-sans text-[12px]">Instagram</a>
+					<a href="#" class="dm-sans text-[12px]">Twitter</a>
+					<a href="#" class="dm-sans text-[12px]">Facebook</a>
 				</div>
-				<p>info@quenchbeverages.com</p>
+				<p class="dm-sans text-[12px]">info@quenchbeverages.com</p>
 			</div>
 		</div>
 	</div>
