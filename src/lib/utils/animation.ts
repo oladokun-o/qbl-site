@@ -131,8 +131,34 @@ export function scrollAnimation(selector: gsap.DOMTarget, options = {}) {
 export function initHeroAnimations(imageElements: gsap.DOMTarget[]) {
   // First scale down all images from larger size
   scaleDownAnimation(imageElements, {
-    scale: 1.8,
+    scale: 2,
     stagger: 0.15,
     duration: 1.2
   });
+}
+
+/**
+ * Fade in animation for elements
+ * @param {HTMLElement} element - The DOM element to animate
+ * @param {Object} options - Animation options
+*/
+export function fadeInAnimation(element: gsap.TweenTarget, options = {}) {
+  const defaults = {
+    duration: 1,
+    opacity: 0,
+    delay: 0
+  };
+
+  const settings = { ...defaults, ...options };
+
+  return gsap.fromTo(element, 
+    { 
+      opacity: settings.opacity
+    }, 
+    { 
+      opacity: 1,
+      duration: settings.duration,
+      delay: settings.delay
+    }
+  );
 }
