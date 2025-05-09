@@ -9,10 +9,14 @@
   export let distance = 100; // Distance to slide in pixels
   export let once = true; // Whether to trigger the animation only once
   export let extendedClass = '';
+  // New screen size option
+  export let screenSize: 'all' | 'mobile' | 'tablet' | 'desktop' = 'all';
   
   let element: Element;
   let hasAnimated = false;
   let observer: IntersectionObserver;
+  let isCorrectScreenSize = false;
+  let resizeObserver: ResizeObserver;
   
   // Animation configurations
   const animations = {
@@ -22,16 +26,50 @@
     'slide-right': { x: -distance, opacity: 0 },
     'fade-in': { opacity: 0 }
   };
+
+  // Screen size breakpoints (in pixels)
+  const breakpoints = {
+    mobile: { min: 0, max: 767 },
+    tablet: { min: 768, max: 1023 },
+    desktop: { min: 1024, max: Infinity }
+  };
   
-  onMount(() => {
-    // Set initial state
+  // Check if current screen matches selected size
+  function checkScreenSize() {
+    const width = window.innerWidth;
+    
+    if (screenSize === 'all') {
+      isCorrectScreenSize = true;
+    } else {
+      const { min, max } = breakpoints[screenSize];
+      isCorrectScreenSize = width >= min && width <= max;
+    }
+    
+    // Apply or reset animations based on screen size
+    if (isCorrectScreenSize) {
+      setupAnimation();
+    } else {
+      // Reset to normal state when screen size doesn't match
+      if (element) {
+        gsap.set(element, getResetState(animations[animation]));
+      }
+    }
+  }
+  
+  // Setup animation with intersection observer
+  function setupAnimation() {
+    if (!element) return;
+    
     const initialState = animations[animation] || animations['slide-top'];
     gsap.set(element, initialState);
     
-    // Create intersection observer
+    if (observer) {
+      observer.disconnect();
+    }
+    
     observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && (!once || !hasAnimated)) {
+        if (entry.isIntersecting && (!once || !hasAnimated) && isCorrectScreenSize) {
           // Element is in view - animate!
           gsap.to(element, {
             ...getResetState(initialState),
@@ -45,7 +83,7 @@
               }
             }
           });
-        } else if (!entry.isIntersecting && !once && hasAnimated) {
+        } else if (!entry.isIntersecting && !once && hasAnimated && isCorrectScreenSize) {
           // Element is out of view - reset if not 'once'
           gsap.to(element, {
             ...initialState,
@@ -58,10 +96,25 @@
     }, { threshold });
     
     observer.observe(element);
+  }
+  
+  onMount(() => {
+    // Initial check
+    checkScreenSize();
+    
+    // Watch for resize events
+    resizeObserver = new ResizeObserver(() => {
+      checkScreenSize();
+    });
+    
+    resizeObserver.observe(document.body);
     
     return () => {
       if (observer) {
         observer.disconnect();
+      }
+      if (resizeObserver) {
+        resizeObserver.disconnect();
       }
     };
   });
