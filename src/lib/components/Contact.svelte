@@ -22,7 +22,7 @@
 		<img
 			src={ContactText}
 			alt="contact text"
-			class="hidden w-[1000px] lg:block"
+			class="hidden md:w-[500px] lg:w-[500px] 2xl:w-[1000px] lg:block"
 			loading="lazy"
 			decoding="async"
 		/>
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		<div class="relative top-[-28px] hidden w-auto items-center justify-center md:flex">
-			<img src={ContactImage} alt="ContactImage" class="w-[214px" />
+			<img src={ContactImage} alt="ContactImage" class="w-[214px]" />
 		</div>
 		<div class="w-full xl:w-50">
 			<div class="flex flex-col gap-3 text-center">

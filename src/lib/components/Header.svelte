@@ -6,7 +6,7 @@
 </script>
 
 <nav class="fixed top-0 left-0 z-[999] w-full bg-transparent">
-    <div class="container mx-auto flex items-center justify-between px-4 py-5">
+    <div class="container mx-auto flex items-center justify-between px-4 lg:px-10 2xl:px-16 py-5">
         <!-- Logo -->
         <a href="/" class="text-xl font-bold text-indigo-600">
             <img src={LogoSvg} alt="Logo" class="w-[48px]" />

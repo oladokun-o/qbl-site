@@ -57,11 +57,11 @@
 <!-- ===================== PRODUCTS SECTION ===================== -->
 <section
 	id="products"
-	class="relative z-10 flex min-h-screen w-full flex-col overflow-hidden bg-[#A52F00] text-white gap-5 md:gap-10"
+	class="relative z-10 flex min-h-screen w-full flex-col overflow-hidden bg-[#A52F00] text-white gap-5 md:gap-10 lg:gap-5 2xl:gap-10"
 >
-	<div class="px-5 pt-20 lg:px-35">
+	<div class="px-5 pt-20 lg:px-35 lg:pt-10">
 		<h1 class="text-left text-[60px] font-light leading-[0.9] text-[#FFEEAF]">
-			<img src={OurProducts} alt="Our Products" class="w-[250px] sm:w-[300px] md:w-[250px] 2xl:w-[331px]" />
+			<img src={OurProducts} alt="Our Products" class="w-[250px] sm:w-[300px] md:w-[250px] lg:w-[200px] 2xl:w-[331px]" />
 		</h1>
 	</div>
 	
@@ -69,13 +69,13 @@
 	<div class="products-scroll-container relative flex w-full items-center overflow-hidden">
 		<div bind:this={productsContainer} class="products-wrapper flex gap-5 md:gap-20 px-5 pl-10 lg:px-35 md:pr-[100px]">
 			{#each products as product, i}
-				<div class="product-item flex w-[280px] flex-col gap-3 md:gap-6">
-					<div class="product-image-container relative w-[274px] md:w-[200px] xl:w-[334px]">
+				<div class="product-item flex w-[280px] flex-col gap-3 md:gap-6 lg:gap-3 2xl:gap-6">
+					<div class="product-image-container relative w-[274px] md:w-[200px] lg:w-[150px] 2xl:w-[334px]">
 						<img src={product.image} alt={product.name} class="w-full transition-transform duration-500" />
 					</div>
-					<div class="flex flex-col gap-3 md:gap-6 text-left text-sm w-full sm:w-[208px]">
+					<div class="flex flex-col gap-3 md:gap-6 lg:gap-3 2xl:gap-6 text-left text-sm w-full sm:w-[208px]">
 						<p class="font-bold uppercase">{product.name}</p>
-						<ul class="flex flex-col gap-4">
+						<ul class="flex flex-col gap-4 lg:gap-2 2xl:gap-4">
 							{#each product.variants as variant}
 								<li class="font-light">
 									{#if variant.name}

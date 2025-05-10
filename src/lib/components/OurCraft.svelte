@@ -4,6 +4,7 @@
 	import Anise from '$lib/assets/images/anise.png';
 	import CraftTitle from '$lib/assets/images/craft title.svg';
 	import GrapeEscape from '$lib/assets/images/grape escape.png';
+	import BgSvg from '$lib/assets/images/OGOGORO WARAGI.svg';
 
 	let observer: IntersectionObserver;
 	let resizeObserver: ResizeObserver;
@@ -141,10 +142,10 @@
 				animation="slide-left"
 				duration={1.5}
 				once={false}
-				extendedClass="z-8 w-full absolute left-[0] top-[32.3%] sm:w-[337px] pl-[3%] md:w-full md:px-20 xl:top-[270px] xl:px-[200px]"
+				extendedClass="z-8 w-full absolute left-[0] top-[32.3%] sm:w-[337px] pl-[3%] md:w-full md:px-20 2xl:top-[270px] xl:px-[200px]"
 			>
 				<h1
-					class="indent-23 md:indent-30 xl:indent-50 text-[30px] font-bold leading-tight text-black/70 md:leading-relaxed lg:indent-40 lg:text-[40px] 2xl:text-[45px]"
+					class="indent-23 md:indent-30 xl:indent-50 text-[30px] font-bold leading-tight text-black/70 md:leading-relaxed lg:indent-40 lg:text-[35px] 2xl:text-[45px]"
 				>
 					<span class="text-white">At Quench</span> Beverages, we bottle more than liquor — we bottle
 					legacy. Inspired by time-honored methods and reimagined for today's drinker, our spirits are
@@ -166,7 +167,7 @@
 					<div class="flex flex-col gap-5 px-5 xl:gap-20">
 						<p class="dm-sans text-[14px] font-light uppercase text-white">Our craft</p>
 
-						<div class="w-[260px] sm:w-[334px] md:w-[250px] 2xl:w-[484px]">
+						<div class="w-[260px] sm:w-[334px] md:w-[250px] lg:w-[350px] 2xl:w-[484px]">
 							<img
 								src={CraftTitle}
 								alt="From Liquor To Fusions – A New Chapter In Spirits"
@@ -176,22 +177,22 @@
 					</div>
 				</div>
 				<div
-					class="end-panel-wrapper flex w-full flex-row gap-20 overflow-y-hidden pl-[700px] pr-[600px] md:pl-[150px] pt-5 xl:w-auto md:gap-[50px] xl:p-0 xl:gap-[70px]"
+					class="end-panel-wrapper flex w-full flex-row gap-20 overflow-y-hidden pl-[700px] pr-[600px] md:pl-[150px] pt-5 xl:w-auto md:gap-[20px] xl:p-0 xl:gap-[70px]"
 				>
 					<AnimateOnScroll
 						animation="slide-bottom"
 						duration={1.5}
 						once={false}
-						extendedClass="inner-panel end-inner-panel w-auto flex-shrink-0 px-0 xl:w-auto flex flex-col text-black gap-5 xl:gap-[55px] relative xl:top-10"
+						extendedClass="relative z-5 inner-panel end-inner-panel w-auto flex-shrink-0 px-0 xl:w-auto flex flex-col text-black gap-5 2xl:gap-[55px] relative lg:top-5 2xl:top-10"
 					>
-						<img src={Anise} alt="anise" class="w-[215px] xl:w-[328px]" />
+						<img src={Anise} alt="anise" class="w-[215px] md:w-[250px] lg:w-[200px] 2xl:w-[328px]" />
 						<AnimateOnScroll
 							animation="fade-in"
 							duration={1.5}
 							delay={0.5}
 							once={false}
 							screenSize="mobile"
-							extendedClass="dm-sans flex flex-col gap-2 xl:gap-5 text-[14px] font-light text-white w-[215px] xl:w-[251px]"
+							extendedClass="dm-sans flex flex-col gap-2 2xl:gap-5 text-[14px] font-light text-white w-[215px] md:w-[250px] lg:w-[200px] 2xl:w-[251px]"
 						>
 							<p>We started with two foundational spirits:</p>
 							<p>
@@ -208,16 +209,16 @@
 						animation="slide-top"
 						duration={1.5}
 						once={false}
-						extendedClass="inner-panel end-inner-panel w-auto flex-shrink-0 px-0 xl:w-auto flex flex-col text-black gap-5 xl:gap-[55px] relative xl:top-20"
+						extendedClass="relative z-5 inner-panel end-inner-panel w-auto flex-shrink-0 px-0 xl:w-auto flex flex-col text-black gap-5 2xl:gap-[55px] relative lg:top-10 2xl:top-20"
 					>
-						<img src={GrapeEscape} alt="grape escape" class="w-[215px] xl:w-[328px]" />
+						<img src={GrapeEscape} alt="grape escape" class="w-[215px] md:w-[250px] lg:w-[200px] 2xl:w-[328px]" />
 						<AnimateOnScroll
 							animation="fade-in"
 							duration={1.5}
 							delay={0.5}
 							once={false}
 							screenSize="mobile"
-							extendedClass="dm-sans flex flex-col gap-2 xl:gap-5 text-[14px] font-light text-white w-[215px] xl:w-[251px]"
+							extendedClass="dm-sans flex flex-col gap-2 2xl:gap-5 text-[14px] font-light text-white w-[215px] md:w-[250px] lg:w-[200px] 2xl:w-[251px]"
 						>
 							<p>
 								From these, we created Fusions — a line of ready-to-drink cocktails blending
@@ -235,6 +236,13 @@
 					</AnimateOnScroll>
 				</div>
 			</div>
+
+			<!-- Absolute bg Image at bottom -->
+			<img
+				src={BgSvg}
+				alt="background"
+				class="absolute bottom-0 left-0 z-0 hidden w-full object-contain lg:block"
+			/>
 		</div>
 	</div>
 </section>
